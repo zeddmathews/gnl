@@ -31,7 +31,7 @@ static char	*get_line(char **line, char *lines)
 	}
 	else
 	{
-		temp = ft_strsub(lines, i + i, (ft_strlen(lines + i) + 1));
+		temp = ft_strsub(lines, i + 1, (ft_strlen(lines + i) + 1));
 		ft_strdel(&lines);
 	}
 	return (temp);
