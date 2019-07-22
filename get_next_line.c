@@ -1,8 +1,18 @@
-// 42 Header
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: zmathews <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/07/22 18:13:09 by zmathews          #+#    #+#             */
+/*   Updated: 2019/07/22 18:13:40 by zmathews         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "./get_next_line.h"
 
-static char	*add_to_array(char *lines, char *buf)
+static char		*add_to_array(char *lines, char *buf)
 {
 	char *new;
 
@@ -15,10 +25,10 @@ static char	*add_to_array(char *lines, char *buf)
 	return (new);
 }
 
-static char	*get_line(char **line, char *lines)
+static char		*get_line(char **line, char *lines)
 {
-	char *temp;
-	int i;
+	char	*temp;
+	int		i;
 
 	i = 0;
 	while (lines[i] != '\n' && lines[i] != '\0')
@@ -37,11 +47,11 @@ static char	*get_line(char **line, char *lines)
 	return (temp);
 }
 
-int	get_next_line(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	char		buf[BUFF_SIZE + 1];
 	static char	*lines[MAX_FD];
-	int		ret;
+	int			ret;
 
 	if (fd < 0 || fd > MAX_FD || line == NULL || read(fd, buf, 0) < 0)
 		return (-1);
