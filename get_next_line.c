@@ -35,10 +35,7 @@ static char		*get_line(char **line, char *lines)
 		i++;
 	*line = ft_strsub(lines, 0, i);
 	if (ft_strcmp(*line, lines) == 0)
-	{
-		temp = NULL;
-		lines = NULL;
-	}
+		return (NULL);
 	else
 	{
 		temp = ft_strsub(lines, i + 1, (ft_strlen(lines + i) + 1));
