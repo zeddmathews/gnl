@@ -6,7 +6,7 @@
 /*   By: zmathews <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:13:09 by zmathews          #+#    #+#             */
-/*   Updated: 2019/07/22 18:13:40 by zmathews         ###   ########.fr       */
+/*   Updated: 2019/08/07 14:16:12 by zmathews         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ static char		*add_to_array(char *lines, char *buf)
 {
 	char *new;
 
-	if (!lines || !buf)
-		return (NULL);
 	new = ft_strjoin(lines, buf);
-	if (!new)
-		return (NULL);
 	ft_strdel(&lines);
 	return (new);
 }
@@ -54,14 +50,17 @@ int				get_next_line(const int fd, char **line)
 		return (-1);
 	if (!lines[fd])
 		lines[fd] = ft_strnew(0);
-	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	if (!(ft_strchr(lines[fd], '\n')))
 	{
-		buf[ret] = '\0';
-		lines[fd] = add_to_array(lines[fd], buf);
-		if (ft_strchr(lines[fd], '\n'))
-			break ;
+		while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+		{
+			buf[ret] = '\0';
+			lines[fd] = add_to_array(lines[fd], buf);
+			if (ft_strchr(lines[fd], '\n'))
+				break ;
+		}
 	}
-	if (ret < BUFF_SIZE && !ft_strlen(lines[fd]))
+	if (ret == 0 && !ft_strlen(lines[fd]))
 		return (0);
 	lines[fd] = get_line(line, lines[fd]);
 	return (1);
