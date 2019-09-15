@@ -6,7 +6,7 @@
 /*   By: zmathews <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/07/22 18:13:09 by zmathews          #+#    #+#             */
-/*   Updated: 2019/08/07 14:16:12 by zmathews         ###   ########.fr       */
+/*   Updated: 2019/09/15 13:43:13 by jhouston         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int				get_next_line(const int fd, char **line)
 	static char	*lines[MAX_FD];
 	int			ret;
 
+	ret = 0;
 	if (fd < 0 || fd > MAX_FD || line == NULL || read(fd, buf, 0) < 0)
 		return (-1);
 	if (!lines[fd])
